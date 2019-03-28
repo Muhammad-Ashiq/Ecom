@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.Web", "Ecom.Web\Ecom.Web.csproj", "{233C74F7-7204-496F-8FE4-FB0EBF531522}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.Models", "Ecom.Models\Ecom.Models.csproj", "{A847EA7A-7B67-43AA-8C33-9EE9857CCE15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{233C74F7-7204-496F-8FE4-FB0EBF531522}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{233C74F7-7204-496F-8FE4-FB0EBF531522}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{233C74F7-7204-496F-8FE4-FB0EBF531522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A847EA7A-7B67-43AA-8C33-9EE9857CCE15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A847EA7A-7B67-43AA-8C33-9EE9857CCE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A847EA7A-7B67-43AA-8C33-9EE9857CCE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A847EA7A-7B67-43AA-8C33-9EE9857CCE15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
