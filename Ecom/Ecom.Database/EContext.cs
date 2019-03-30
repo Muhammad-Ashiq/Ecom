@@ -1,4 +1,5 @@
-﻿using Ecom.Models;
+﻿using System;
+using Ecom.Models;
 using System.Data.Entity;
 
 namespace Ecom.Database
