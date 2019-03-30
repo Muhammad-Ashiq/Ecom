@@ -50,6 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EContext.cs" />
+    <Compile Include="Migrations\201903301533132_Initial.cs" />
+    <Compile Include="Migrations\201903301533132_Initial.Designer.cs">
+      <DependentUpon>201903301533132_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +66,11 @@
       <Project>{a847ea7a-7b67-43aa-8c33-9ee9857cce15}</Project>
       <Name>Ecom.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903301533132_Initial.resx">
+      <DependentUpon>201903301533132_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

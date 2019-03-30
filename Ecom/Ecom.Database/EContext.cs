@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ecom.Models;
 using System.Data.Entity;
-using Ecom.Models;
 
 namespace Ecom.Database
 {
-    public class EContext:DbContext
+    public class EContext : DbContext
     {
-        public EContext() : base("DefaultConnection")
+        public EContext() : base("Ecom")
         {
-            
         }
 
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Product> Products { get; set; }
+
     }
 }
