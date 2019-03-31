@@ -1,37 +1,64 @@
-﻿using Ecom.Models;
-using Ecom.Service;
+﻿using Ecom.Database;
+using Ecom.Models;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Ecom.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoriesService service = new CategoriesService();
-        [HttpGet]
+        private EContext _context;
+
+        public CategoryController()
+        {
+            _context = new EContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+        //CategoriesService service = new CategoriesService();
+
         public ActionResult Index()
         {
-            var categories = service.GetCategories();
+            var categories = _context.Categories.ToList();
             return View(categories);
         }
         // GET: Category
-        [HttpGet]
-        public ActionResult Create()
+
+        public ActionResult New()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Category category)
+        public ActionResult Save(Category category)
         {
-            service.SaveCategory(category);
-            return View();
-        }
-        [HttpGet]
-        public ActionResult Edit(int Id)
-        {
-            return View();
+            if (category.Id == 0)
+                _context.Categories.Add(category);
+            else
+            {
+                var CategoryInDb = _context.Categories.Single(c => c.Id == category.Id);
+                CategoryInDb.Name = category.Name;
+                CategoryInDb.Description = category.Description;
+
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Category");
         }
 
-        
+        public ActionResult Edit(int id)
+        {
+            var cate = _context.Categories.SingleOrDefault(m => m.Id == id);
+
+            if (cate == null)
+                return HttpNotFound();
+            return View(cate);
+        }
+
+
+
     }
 }
