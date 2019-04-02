@@ -1,40 +1,40 @@
-﻿
-@model IEnumerable<Ecom.Models.Category>
+﻿@model IEnumerable<Ecom.Models.Category>
 
 @{
-    ViewBag.Title = "Categories";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Index</h2>
 
-<h2>Categores</h2>
 <p>
     @Html.ActionLink("Create New", "New")
 </p>
-@if (!Model.Any())
-{
-    <p>we don't have any category</p>
-}
-else
-{
-    <table class="table table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>Categories</th>
-            <th>Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var cate in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(cate.Name, "Edit" , new {id= cate.Id})</td>
-                <td>@cate.Description</td>
-            </tr>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             
-            
-        }
-        </tbody>
-    </table>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
 }
 
+</table>

@@ -58,6 +58,17 @@ namespace Ecom.Web.Controllers
             return View(cate);
         }
 
+        public ActionResult Delete(int? id)
+        {
+            Category cate = _context.Categories.Find(id);
+            _context.Categories.Remove(cate);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
+        
+
+
 
 
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Ecom.Models;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Ecom.Database
 {
