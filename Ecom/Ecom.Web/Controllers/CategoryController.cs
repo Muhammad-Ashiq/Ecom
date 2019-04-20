@@ -22,7 +22,9 @@ namespace Ecom.Web.Controllers
 
         public ActionResult Index()
         {
+
             var categories = _context.Categories.ToList();
+            
             return View(categories);
         }
         // GET: Category

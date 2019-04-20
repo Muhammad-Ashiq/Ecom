@@ -199,6 +199,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -271,6 +272,10 @@
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\New.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Product\ProductTable.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -291,6 +296,10 @@
     <ProjectReference Include="..\Ecom.Models\Ecom.Models.csproj">
       <Project>{A847EA7A-7B67-43AA-8C33-9EE9857CCE15}</Project>
       <Name>Ecom.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecom.Service\Ecom.Service.csproj">
+      <Project>{3B252A64-693F-4EDF-A751-CFB6165AFD1C}</Project>
+      <Name>Ecom.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
