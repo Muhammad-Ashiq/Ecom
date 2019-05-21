@@ -1,11 +1,10 @@
-﻿using System;
-using Ecom.Models;
+﻿using Ecom.Models;
+using System;
 using System.Data.Entity;
-using System.Linq;
 
 namespace Ecom.Database
 {
-    public class EContext : DbContext
+    public class EContext : DbContext, IDisposable
     {
         public EContext() : base("Ecom")
         {

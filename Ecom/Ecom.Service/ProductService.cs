@@ -1,6 +1,7 @@
 ﻿using Ecom.Database;
 using Ecom.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Ecom.Service
@@ -11,15 +12,18 @@ namespace Ecom.Service
         {
             using (var context = new EContext())
             {
-                return context.Products.Find(Id);
+                return context.Products.Where(c => c.Id == Id).
+                    Include(x => x.Category).
+                    FirstOrDefault();
             }
         }
 
         public List<Product> GetProducts()
         {
+
             using (var context = new EContext())
             {
-                return context.Products.ToList();
+                return context.Products.Include(x => x.Category).ToList();
             }
 
         }
@@ -28,6 +32,8 @@ namespace Ecom.Service
         {
             using (var context = new EContext())
             {
+                context.Entry(product.Category).State = System.Data.Entity.EntityState.Unchanged;
+
                 context.Products.Add(product);
                 context.SaveChanges();
             }

@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Ecom.Service;
+using Ecom.Web.ViewModels;
 using System.Web.Mvc;
 
 namespace Ecom.Web.Controllers
 {
     public class HomeController : Controller
     {
+        CategoriesService categoryService = new CategoriesService();
+
         public ActionResult Index()
         {
-            return View();
+            HomeViewModel model = new HomeViewModel();
+            model.FeaturedCategories = categoryService.GetFeaturedCategories();
+            return View(model);
         }
 
         public ActionResult About()

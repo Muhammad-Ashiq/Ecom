@@ -58,6 +58,22 @@
     <Compile Include="Migrations\201903312049066_AddingDataAnnotation.Designer.cs">
       <DependentUpon>201903312049066_AddingDataAnnotation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904232007014_ImageUrlAdd.cs" />
+    <Compile Include="Migrations\201904232007014_ImageUrlAdd.Designer.cs">
+      <DependentUpon>201904232007014_ImageUrlAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905141313389_categoryId.cs" />
+    <Compile Include="Migrations\201905141313389_categoryId.Designer.cs">
+      <DependentUpon>201905141313389_categoryId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151313097_Category.cs" />
+    <Compile Include="Migrations\201905151313097_Category.Designer.cs">
+      <DependentUpon>201905151313097_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161233053_AddIsFeatured.cs" />
+    <Compile Include="Migrations\201905161233053_AddIsFeatured.Designer.cs">
+      <DependentUpon>201905161233053_AddIsFeatured.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +93,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903312049066_AddingDataAnnotation.resx">
       <DependentUpon>201903312049066_AddingDataAnnotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904232007014_ImageUrlAdd.resx">
+      <DependentUpon>201904232007014_ImageUrlAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141313389_categoryId.resx">
+      <DependentUpon>201905141313389_categoryId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151313097_Category.resx">
+      <DependentUpon>201905151313097_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161233053_AddIsFeatured.resx">
+      <DependentUpon>201905161233053_AddIsFeatured.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
