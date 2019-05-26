@@ -42,9 +42,8 @@
 			<img src="@imageUrl" class="img-thumbnail img-fluid" id="categoryImage" />
 		</div>
 	</div>
-	
-
 	<button id="updateBtn" type="button" class="btn btn-primary">Update</button>
+	<button id="cancelBtn" type="button" class="btn btn-primary">Update</button>
 </form>
 <script>
 	$("#imageUpload").change(function () {
@@ -58,7 +57,7 @@
 		}
 		$.ajax({
 				type: 'POST',
-				url: '/Shared/UploadImage',
+				url: '@Url.Action("UploadImage", "Shared")',
 				dataType: 'json',
 				data: formData,
 				contentType: false,
@@ -73,7 +72,7 @@
 					$("#categoryImage").attr("src", response.ImageURL);
 				}
 			})
-			.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+			.fail(function (xmlHttpRequest, textStatus, errorThrown) {
 				alert("FAIL");
 			});
 		
@@ -81,15 +80,19 @@
 	$("#updateBtn").click(function () {
 		$.ajax({
 				type: 'POST',
-				url: '/Category/Edit',
+				url: '@Url.Action("Edit", "Category")',
 				data: $("#editCategory").serialize()
 			})
 			.done(function (response) {
 				$("#tableContiner").html(response);
 				$("#actionContainer").html("");
 			})
-			.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+			.fail(function (xmlHttpRequest, textStatus, errorThrown) {
 				alert("FAIL");
 			});
+	});
+	$("#cancelBtn").click(function () {
+	    $("#actionContainer").html("");
+	    focusAction("tableContiner");
 	});
 </script>

@@ -8,8 +8,27 @@ namespace Ecom.Service
 {
     public class CategoriesService
     {
+
+        #region Singleton
+        public static CategoriesService Instance
+        {
+            get
+            {
+                if (instance == null) instance = new CategoriesService();
+
+                return instance;
+            }
+        }
+        private static CategoriesService instance { get; set; }
+
+        public CategoriesService()
+        {
+        }
+        #endregion
+
         public void SaveCategory(Category category)
         {
+
 
             using (var context = new EContext())
             {
@@ -31,11 +50,11 @@ namespace Ecom.Service
                 return context.Categories.Where(x => x.IsFeatured && x.ImageUrl != null).ToList();
             }
         }
-        public Category GetCategory(int Id)
+        public Category GetCategory(int id)
         {
             using (var context = new EContext())
             {
-                return context.Categories.Find(Id);
+                return context.Categories.Find(id);
             }
         }
         public void UpdateCategory(Category category)
@@ -47,11 +66,11 @@ namespace Ecom.Service
             }
 
         }
-        public void DeleteCategory(int Id)
+        public void DeleteCategory(int id)
         {
             using (var context = new EContext())
             {
-                var category = context.Categories.Find(Id);
+                var category = context.Categories.Find(id);
                 context.Categories.Remove(category);
                 context.SaveChanges();
             }

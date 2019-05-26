@@ -1,0 +1,28 @@
+﻿@model Ecom.Web.ViewModels.CheckoutViewModel
+
+
+@if (Model != null)
+{
+    if (Model.CartProducts != null && Model.CartProducts.Count > 0)
+    {
+        <div>
+            @foreach (var product in Model.CartProducts)
+            {
+                var productCount = Model.CartProductIds.Where(x => x == product.Id).Count();
+
+
+                <div>
+                    Name:@product.Name - Price:@product.Price - Quantity:@productCount TotalPrice:@(product.Price* productCount)
+                </div>
+                <div>
+                    Total Bill : @Model.CartProducts.Sum(c=>c.Price * Model.CartProductIds.Where(x => x == c.Id).Count());
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div>Sorrry! There is No Produts In Cart</div>
+    }
+}
+

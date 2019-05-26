@@ -7,13 +7,13 @@ namespace Ecom.Database.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CategoryId : IMigrationMetadata
+    public sealed partial class Configur : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CategoryId));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Configur));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905141313389_categoryId"; }
+            get { return "201905232003492_Configur"; }
         }
         
         string IMigrationMetadata.Source

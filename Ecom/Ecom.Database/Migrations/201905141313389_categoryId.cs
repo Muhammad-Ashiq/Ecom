@@ -3,7 +3,7 @@ namespace Ecom.Database.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class categoryId : DbMigration
+    public partial class CategoryId : DbMigration
     {
         public override void Up()
         {

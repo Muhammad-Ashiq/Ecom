@@ -14,5 +14,7 @@ namespace Ecom.Database
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<Config> Configs { get; set; }
+
     }
 }
