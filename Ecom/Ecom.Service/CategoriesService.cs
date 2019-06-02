@@ -10,6 +10,7 @@ namespace Ecom.Service
     {
 
         #region Singleton
+
         public static CategoriesService Instance
         {
             get
@@ -19,11 +20,13 @@ namespace Ecom.Service
                 return instance;
             }
         }
+
         private static CategoriesService instance { get; set; }
 
         public CategoriesService()
         {
         }
+
         #endregion
 
         public void SaveCategory(Category category)
@@ -36,13 +39,45 @@ namespace Ecom.Service
                 context.SaveChanges();
             }
         }
-        public List<Category> GetCategories()
+
+        //public List<Category> GetCategories()
+        //{
+        //    using (var context = new EContext())
+        //    {
+        //        return context.Categories.Include(x => x.Products).ToList();
+        //    }
+        //}
+        public int GetCategoriesCount(string search)
         {
             using (var context = new EContext())
             {
-                return context.Categories.Include(x => x.Products).ToList();
+                if (!string.IsNullOrEmpty(search))
+                {
+                    return context.Categories.Where(
+                        category =>category.Name != null 
+                        && category.Name.ToLower().
+                        Contains(search.ToLower())).
+                        Count();
+                    //return context.Categories.Where(category => category.Name != null &&
+                    //category.Name.ToLower().Contains(search.ToLower())).Count();
+                }
+                else
+                {
+                    return context.Categories.Count();
+                }
             }
         }
+
+        public List<Category> GetAllCategories()
+        {
+            using (var context = new EContext())
+            {
+
+                return context.Categories
+                    .ToList();
+            }
+        }
+
         public List<Category> GetFeaturedCategories()
         {
             using (var context = new EContext())
@@ -50,6 +85,7 @@ namespace Ecom.Service
                 return context.Categories.Where(x => x.IsFeatured && x.ImageUrl != null).ToList();
             }
         }
+
         public Category GetCategory(int id)
         {
             using (var context = new EContext())
@@ -57,6 +93,7 @@ namespace Ecom.Service
                 return context.Categories.Find(id);
             }
         }
+
         public void UpdateCategory(Category category)
         {
             using (var context = new EContext())
@@ -66,6 +103,7 @@ namespace Ecom.Service
             }
 
         }
+
         public void DeleteCategory(int id)
         {
             using (var context = new EContext())
@@ -73,6 +111,35 @@ namespace Ecom.Service
                 var category = context.Categories.Find(id);
                 context.Categories.Remove(category);
                 context.SaveChanges();
+            }
+        }
+
+        public List<Category> GetCategories(string search, int pageNo)
+        {
+            int pageSize = 3;
+
+            using (var context = new EContext())
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    return context.Categories.Where(category => category.Name != null &&
+                                                                category.Name.ToLower().Contains(search.ToLower()))
+                        .OrderBy(x => x.Id)
+                        .Skip((pageNo - 1) * pageSize)
+                        .Take(pageSize)
+                        .Include(x => x.Products)
+                        .ToList();
+                }
+                else
+                {
+                    return context.Categories
+                        .OrderBy(x => x.Id)
+                        .Skip((pageNo - 1) * pageSize)
+                        .Take(pageSize)
+                        .Include(x => x.Products)
+                        .ToList();
+                }
+
             }
         }
     }

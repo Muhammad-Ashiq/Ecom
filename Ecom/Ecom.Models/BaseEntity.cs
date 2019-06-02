@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Ecom.Models
 {
@@ -12,9 +6,10 @@ namespace Ecom.Models
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(222)]
+        [MinLength(5), MaxLength(50)]
         public string Name { get; set; }
 
+        [MaxLength(250)]
         public string Description { get; set; }
     }
 }

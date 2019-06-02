@@ -73,8 +73,8 @@
 				console.log(response);
 
 				if (response.Success) {
-					$("#ImageUrl").val(response.ImageUrl);
-					$("#productImage").attr("src", response.ImageUrl);
+					$("#ImageUrl").val(response.ImageURL);
+					$("#productImage").attr("src", response.ImageURL);
 				}
 			})
 			.fail(function (XMLHttpRequest, textStatus, errorThrown) {

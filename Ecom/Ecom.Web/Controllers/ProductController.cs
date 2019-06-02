@@ -42,7 +42,7 @@ namespace Ecom.Web.Controllers
         {
             NewProductViewModel model = new NewProductViewModel();
 
-            model.AvailableCategories = CategoriesService.Instance.GetCategories();
+            model.AvailableCategories = CategoriesService.Instance.GetAllCategories();
             return PartialView(model);
         }
 
@@ -73,7 +73,7 @@ namespace Ecom.Web.Controllers
             model.Price = product.Price;
             model.CategoryId = product.Category != null ? product.Category.Id : 0;
             model.ImageUrl = product.ImagrUrl;
-            model.AvailableCategories = CategoriesService.Instance.GetCategories();
+            model.AvailableCategories = CategoriesService.Instance.GetAllCategories();
 
             return PartialView(model);
         }

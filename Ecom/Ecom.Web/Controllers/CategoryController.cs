@@ -1,7 +1,6 @@
 ﻿using Ecom.Models;
 using Ecom.Service;
 using Ecom.Web.ViewModels;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Ecom.Web.Controllers
@@ -14,27 +13,41 @@ namespace Ecom.Web.Controllers
         public ActionResult Index()
 
         {
-
             return View();
         }
 
 
-        public ActionResult CategoryTable(string search)
+        public ActionResult CategoryTable(string search, int? pageNo)
         {
             CategorySearchViewModel model = new CategorySearchViewModel();
 
-            model.Categories = CategoriesService.Instance.GetCategories();
+            model.SearchTerm = search;
 
-            if (!string.IsNullOrEmpty(search))
+            pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
+
+            var totalRecords = CategoriesService.Instance.GetCategoriesCount(search);
+            model.Categories = CategoriesService.Instance.GetCategories(search, pageNo.Value);
+
+            if (model.Categories != null)
             {
-                model.SearchTerm = search;
 
-                model.Categories = model.Categories.Where(p =>
-                p.Name != null && p.Name.ToLower().
-                Contains(search.ToLower())).ToList();
+                model.Pager = new Pager(totalRecords, pageNo, 3);
+
+                return PartialView("_CategoryTable", model);
+                //    //model.SearchTerm = search;
+                //    //model.Categories = model.Categories.Where(p =>
+                //    //    p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
+
+                //model.Pager = new Pager(model.Categories.Count, pageNo);
+                ////model.Categories= model.Categories.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                //return PartialView("_CategoryTable", model);
             }
+            else
+            {
+                return HttpNotFound();
 
-            return PartialView("_CategoryTable", model);
+            }
         }
 
         // GET: Category
@@ -50,14 +63,19 @@ namespace Ecom.Web.Controllers
         [HttpPost]
         public ActionResult Create(NewCategoryViewModel model)
         {
-            var newCategory = new Category();
-            newCategory.Name = model.Name;
-            newCategory.Description = model.Description;
-            newCategory.ImageUrl = model.ImageUrl;
-            newCategory.IsFeatured = model.IsFeatured;
-            CategoriesService.Instance.SaveCategory(newCategory);
+            if (ModelState.IsValid)
+            {
+                var newCategory = new Category();
+                newCategory.Name = model.Name;
+                newCategory.Description = model.Description;
+                newCategory.ImageUrl = model.ImageUrl;
+                newCategory.IsFeatured = model.IsFeatured;
+                CategoriesService.Instance.SaveCategory(newCategory);
 
-            return RedirectToAction("CategoryTable");
+                return RedirectToAction("CategoryTable");
+            }
+            return new HttpStatusCodeResult(500);
+
 
         }
         #endregion
