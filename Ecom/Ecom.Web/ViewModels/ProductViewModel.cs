@@ -13,6 +13,7 @@ namespace Ecom.Web.ViewModels
 
     public class NewProductViewModel
     {
+
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -34,5 +35,8 @@ namespace Ecom.Web.ViewModels
 
         public List<Category> AvailableCategories { get; set; }
     }
-
+    public class ProductViewModels
+    {
+        public Product Product { get; set; }
+    }
 }

@@ -49,6 +49,7 @@ namespace Ecom.Web.Controllers
         [HttpPost]
         public ActionResult Create(NewProductViewModel model)
         {
+
             var newProduct = new Product();
             newProduct.Name = model.Name;
             newProduct.Description = model.Description;
@@ -100,5 +101,15 @@ namespace Ecom.Web.Controllers
 
             return RedirectToAction("ProductTable");
         }
+        [HttpGet]
+        public ActionResult Details(int Id)
+        {
+            ProductViewModels model = new ProductViewModels();
+
+            model.Product = ProductService.Instance.GetProduct(Id);
+
+            return View(model);
+        }
+
     }
 }

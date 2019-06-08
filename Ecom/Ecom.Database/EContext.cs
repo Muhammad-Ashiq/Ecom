@@ -16,5 +16,10 @@ namespace Ecom.Database
 
         public DbSet<Config> Configs { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Category>().Property(p => p.Name).IsRequired().HasMaxLength(50);
+        }
+
     }
 }

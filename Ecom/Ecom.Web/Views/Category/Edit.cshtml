@@ -4,7 +4,7 @@
 	ViewBag.Title = "Edit";
 	var trueChecked = Model.IsFeatured ? "checked" : string.Empty;
 	var falseChecked = !Model.IsFeatured ? "checked" : string.Empty;
-	var imageUrl = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/Content/images/placeholder-image.png"; 
+	var imageUrl = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/Content/images/placeholder-image.png";
 }
 
 <h2>Edit Category</h2>
@@ -22,7 +22,7 @@
 		</div>
 		<div class="form-group">
 			<label>Image</label>
-			<input type="hidden" id="ImageUrl" name="ImageURL" value="@Model.ImageUrl" />
+			<input type="hidden" id="ImageUrl" name="ImageURL" value="@imageUrl" />
 			<input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
 		</div>
 		<div class="form-group">
@@ -43,7 +43,7 @@
 		</div>
 	</div>
 	<button id="updateBtn" type="button" class="btn btn-primary">Update</button>
-	<button id="cancelBtn" type="button" class="btn btn-primary">Update</button>
+	<button id="cancelBtn" type="button" class="btn btn-primary">Cancel</button>
 </form>
 <script>
 	$("#imageUpload").change(function () {
@@ -56,18 +56,17 @@
 			formData.append("Photo", file);
 		}
 		$.ajax({
-				type: 'POST',
-				url: '@Url.Action("UploadImage", "Shared")',
-				dataType: 'json',
-				data: formData,
-				contentType: false,
-				processData: false
-			})
+			type: 'POST',
+			url: '@Url.Action("UploadImage", "Shared")',
+			dataType: 'json',
+			data: formData,
+			contentType: false,
+			processData: false
+		})
 			.done(function (response) {
 				debugger;
 				console.log(response);
-				if(response.Success)
-				{
+				if (response.Success) {
 					$("#ImageURL").val(response.ImageURL);
 					$("#categoryImage").attr("src", response.ImageURL);
 				}
@@ -75,24 +74,26 @@
 			.fail(function (xmlHttpRequest, textStatus, errorThrown) {
 				alert("FAIL");
 			});
-		
+
 	});
 	$("#updateBtn").click(function () {
 		$.ajax({
-				type: 'POST',
-				url: '@Url.Action("Edit", "Category")',
-				data: $("#editCategory").serialize()
-			})
+			type: 'Post',
+			url: '@Url.Action("Edit", "Category")',
+			data: $("#editProduct").serialize()
+
+		})
 			.done(function (response) {
 				$("#tableContiner").html(response);
 				$("#actionContainer").html("");
 			})
-			.fail(function (xmlHttpRequest, textStatus, errorThrown) {
-				alert("FAIL");
+			.fail(function (textStatus, erroethrow) {
+				alert("Fail");
 			});
 	});
+
 	$("#cancelBtn").click(function () {
-	    $("#actionContainer").html("");
-	    focusAction("tableContiner");
+		$("#actionContainer").html("");
+		focusAction("tableContiner");
 	});
 </script>

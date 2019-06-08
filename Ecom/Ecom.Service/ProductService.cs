@@ -35,6 +35,7 @@ namespace Ecom.Service
                     FirstOrDefault();
             }
         }
+
         public List<Product> GetProducts(List<int> ids)
         {
             using (var context = new EContext())
@@ -48,9 +49,8 @@ namespace Ecom.Service
             int pageSize = 5;
             using (var context = new EContext())
             {
-                return context.Products.OrderBy(x => x.Id).Skip((pageNo - 1) * pageSize).Take(pageSize).Include(x => x.Category).ToList();
-                //return context.Products.OrderBy(x => x.Id).Skip((pageNo - 1) * pageSize).Take(pageSize).Include(x => x.Category).ToList();
-                //return context.Products.OrderBy(n=>n.Id).Skip((pageNo-1)*pageSize).Take(pageSize).Include(x => x.Category).ToList();
+                return context.Products.OrderBy(x => x.Id).Skip((pageNo - 1) * pageSize).
+                    Take(pageSize).Include(x => x.Category).ToList();
                 //return context.Products.Include(x => x.Category).ToList();
             }
 
@@ -90,5 +90,44 @@ namespace Ecom.Service
 
 
         }
+
+        public List<Product> GetLatestProducts(int numberOfProducts)
+        {
+
+            using (var context = new EContext())
+            {
+                return context.Products.OrderByDescending(x => x.Id).Take(numberOfProducts).Include(x => x.Category).ToList();
+
+            }
+
+        }
+
+        public List<Product> GetProducts(int pageNo, int pageSize)
+        {
+
+            using (var context = new EContext())
+            {
+                return context.Products.OrderByDescending(x => x.Id).Skip((pageNo - 1) * pageSize).
+                    Take(pageSize).Include(x => x.Category).ToList();
+                //return context.Products.Include(x => x.Category).ToList();
+            }
+
+        }
+        public List<Product> GetProductsByCategory(int categoryId, int pageSize)
+        {
+
+            using (var context = new EContext())
+            {
+                return context.Products.Where(x => x.Category.Id == categoryId).OrderByDescending(x => x.Id).
+                    Take(pageSize).Include(x => x.Category).ToList();
+                //return context.Products.Include(x => x.Category).ToList();
+            }
+
+        }
+
+
     }
+
+
+
 }
