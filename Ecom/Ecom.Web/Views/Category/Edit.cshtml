@@ -4,50 +4,53 @@
 	ViewBag.Title = "Edit";
 	var trueChecked = Model.IsFeatured ? "checked" : string.Empty;
 	var falseChecked = !Model.IsFeatured ? "checked" : string.Empty;
-	var imageUrl = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/Content/images/placeholder-image.png";
+	var imageURL = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/Content/images/image.png";
 }
-
 <h2>Edit Category</h2>
 
-<form id="editProduct">
+<form id="editCategory">
 	<input type="hidden" name="ID" value="@Model.Id" />
-	<div class="col-md-8">
-		<div class="form-group">
-			<label>Name</label>
-			<input class="form-control" name="Name" value="@Model.Name" />
-		</div>
-		<div class="form-group">
-			<label>Description</label>
-			<input class="form-control" name="Description" value="@Model.Description" />
-		</div>
-		<div class="form-group">
-			<label>Image</label>
-			<input type="hidden" id="ImageUrl" name="ImageURL" value="@imageUrl" />
-			<input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
-		</div>
-		<div class="form-group">
-			<label>Is Featured?</label>
-			<div class="input-group">
-				<div class="radio form-control">
-					<label><input name="isFeatured" type="radio" value="True" @trueChecked /> True</label>
-				</div>
-				<div class="radio form-control">
-					<label><input name="isFeatured" type="radio" value="False" @falseChecked /> False</label>
+
+	<div class="row">
+		<div class="col-md-8">
+			<div class="form-group">
+				<label>Name</label>
+				<input class="form-control" name="Name" value="@Model.Name" />
+			</div>
+			<div class="form-group">
+				<label>Description</label>
+				<input class="form-control" name="Description" value="@Model.Description" />
+			</div>
+			<div class="form-group">
+				<label>Image</label>
+				<input type="hidden" id="ImageURL" name="ImageURL" value="@Model.ImageUrl" />
+				<input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
+			</div>
+			<div class="form-group">
+				<label>Is Featured?</label>
+				<div class="input-group">
+					<div class="radio form-control">
+						<label><input name="isFeatured" type="radio" value="True" @trueChecked /> True</label>
+					</div>
+					<div class="radio form-control">
+						<label><input name="isFeatured" type="radio" value="False" @falseChecked /> False</label>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="thumb">
-			<img src="@imageUrl" class="img-thumbnail img-fluid" id="categoryImage" />
+		<div class="col-md-4">
+			<div class="thumb">
+				<img src="@imageURL" class="img-thumbnail img-fluid" id="categoryImage" />
+			</div>
 		</div>
 	</div>
+
 	<button id="updateBtn" type="button" class="btn btn-primary">Update</button>
 	<button id="cancelBtn" type="button" class="btn btn-primary">Cancel</button>
 </form>
+
 <script>
 	$("#imageUpload").change(function () {
-		debugger;
 		var element = this;
 		var formData = new FormData();
 		var totalFiles = element.files.length;
@@ -63,35 +66,32 @@
 			contentType: false,
 			processData: false
 		})
-			.done(function (response) {
-				debugger;
-				console.log(response);
-				if (response.Success) {
-					$("#ImageURL").val(response.ImageURL);
-					$("#categoryImage").attr("src", response.ImageURL);
-				}
-			})
-			.fail(function (xmlHttpRequest, textStatus, errorThrown) {
-				alert("FAIL");
-			});
-
+		.done(function (response) {
+			console.log(response);
+			if (response.Success) {
+				$("#ImageURL").val(response.ImageURL);
+				$("#categoryImage").attr("src", response.ImageURL);
+			}
+		})
+		.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("FAIL");
+		});
 	});
 	$("#updateBtn").click(function () {
 		$.ajax({
-			type: 'Post',
+			type: 'POST',
 			url: '@Url.Action("Edit", "Category")',
-			data: $("#editProduct").serialize()
-
+			data: $("#editCategory").serialize()
 		})
-			.done(function (response) {
-				$("#tableContiner").html(response);
-				$("#actionContainer").html("");
-			})
-			.fail(function (textStatus, erroethrow) {
-				alert("Fail");
-			});
+		.done(function (response) {
+			$("#tableContiner").html(response);
+			$("#actionContainer").html("");
+			focusAction("tableContiner");
+		})
+		.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("FAIL");
+		});
 	});
-
 	$("#cancelBtn").click(function () {
 		$("#actionContainer").html("");
 		focusAction("tableContiner");

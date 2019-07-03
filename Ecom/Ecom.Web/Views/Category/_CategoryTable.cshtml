@@ -63,7 +63,7 @@
 		</tbody>
 	</table>
 	<div>
-		@if (Model.Pager != null)
+		@if (Model.Pager != null && Model.Pager.PageSize > 1)
 		{
 
 			if (Model.Pager.CurrentPage > 1)
@@ -139,7 +139,7 @@
 
 	$("#newBtn").click(function () {
 		$.ajax({
-			url: '@Url.Action("Create", "Category")',
+			url: '@Url.Action("Create", "Category")'
 		})
 		.done(function (response) {
 			$("#actionContainer").html(response);

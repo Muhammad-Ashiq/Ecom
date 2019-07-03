@@ -98,6 +98,10 @@
     <Compile Include="Migrations\201906030522460_RemovingCategotyId.Designer.cs">
       <DependentUpon>201906030522460_RemovingCategotyId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906251834031_AddingCategoryid.cs" />
+    <Compile Include="Migrations\201906251834031_AddingCategoryid.Designer.cs">
+      <DependentUpon>201906251834031_AddingCategoryid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -147,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906030522460_RemovingCategotyId.resx">
       <DependentUpon>201906030522460_RemovingCategotyId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906251834031_AddingCategoryid.resx">
+      <DependentUpon>201906251834031_AddingCategoryid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

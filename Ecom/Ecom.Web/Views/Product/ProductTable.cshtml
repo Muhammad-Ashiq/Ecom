@@ -5,6 +5,12 @@
 
 }
 
+@*<link rel="stylesheet" type="text/css" href="/Content/stylesheets/sweetalert.css">*@
+<script src="/Content/javascript/sweetalert.min.js"></script>
+
+<script src="/Scripts/jquery.validate.min.js"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>*@
+
 @*<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
 
@@ -80,22 +86,39 @@
         </tbody>
     </table>
     <div>
-        @if (Model.PageNo != 1)
+        @if (Model.Pager != null && Model.Pager.PageSize > 1)
         {
-            <button class="pageBtns" data-pageNo="@(Model.PageNo - 1)">Previous</button>
 
+            if (Model.Pager.CurrentPage > 1)
+            {
+                <button class="pageButtons" data-pageno="1">First</button>
+                <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage - 1)">Previous</button>
+            }
+
+            for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
+
+                <button class="@activeClass pageButtons" data-pageno="@page">@page</button>
+            }
+
+            if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</button>
+                <button class="pageButtons" data-pageno="@Model.Pager.EndPage">Last</button>
+            }			
         }
-        <button class="pageBtns" data-pageNo="@(Model.PageNo + 1)">Next</button>
+
     </div>
 </div>
 <script>
     //$('#ProductsTable').DataTable();
 
-    $(".pageBtns").click(function () {
+    $(".pageButtons").click(function () {
         $.ajax({
                 url: '@Url.Action("ProductTable", "Product")',
                 data: {
-                    pageNo: $(this).attr("data-pageNo")
+                    pageNo: $(this).attr("data-pageno")
                 }
             })
     .done(function (response) {
@@ -169,13 +192,14 @@
                 alert("FAIL");
             });
     });
+    
     $(".deleteBtn").click(function () {
         swal({
                 title: "Confirm?",
                 text: "Are you sure you want to delete this product !",
                 icon: "warning",
                 buttons: true,
-                dangerMode: true,
+                dangerMode: true
             })
             .then((willDelete) => {
                 if (willDelete) {
@@ -189,7 +213,7 @@
                         .done(function (response) {
                             $("#tableContiner").html(response);
                             swal("Record Deleted Successed ", {
-                                icon: "success",
+                                icon: "success"
                             });
                         })
                         .fail(function (xmlHttpRequest, textStatus, errorThrown) {
@@ -200,11 +224,16 @@
     });
     var products = [];
     $(".addtoCart").click(function () {
+
+        
+
         var productId = $(this).attr('data-id');
 
         products.push(productId);
 
         $.cookie('CartProducts', products.join('-'));
-        alert("Product is Added to Cart");
+        swal
+            ( "Product is add to Cart");
+        //alert("Product is Added to Cart");
     });
 </script>

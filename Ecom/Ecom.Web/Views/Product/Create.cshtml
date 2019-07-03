@@ -49,6 +49,36 @@
 	
 
 <script>
+
+	$("#createProduct").validate({
+		rules: {
+			Name: {
+				required: true,
+				minlength: 5,
+				maxlength: 50
+			},
+			Description: {
+				maxlength: 50
+			},
+			Price: {
+				range: [1, 100000]
+			}
+		},
+		messsages: {
+			Name: {
+				required: 'Name is required',
+				minlength: 'Min length Should be 5',
+				maxlength: 'Maximun length should be 50'
+			},
+			Description: {
+				maxlength: 'Maximum length should br 500'
+			},
+			Price: {
+				range: 'Price must be within range of 1 - 100000.'
+			}
+		}
+	});
+
 	$("#imageUpload").change(function () {
 		var element = this;
 
@@ -69,7 +99,7 @@
 				contentType: false,
 				processData: false
 			})
-			.done(function (response) {
+			.done(function(response) {
 				console.log(response);
 
 				if (response.Success) {
@@ -77,24 +107,34 @@
 					$("#productImage").attr("src", response.ImageURL);
 				}
 			})
-			.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+			.fail(function(XMLHttpRequest, textStatus, errorThrown) {
 				alert("FAIL");
 			});
 	});
-	$("#saveBtn").click(function () {
-		$.ajax({
-				type: 'Post',
-				url: '@Url.Action("Create", "Product")',
-				data:$("#createProduct").serialize()
+	$("#saveBtn").click(function() {
+		if ($("#createProduct").valid()) {
+			$.ajax({
+					type: 'Post',
+					url: '@Url.Action("Create", "Product")',
+					data: $("#createProduct").serialize()
 
-			})
-			.done(function (response) {
-				$("#tableContiner").html(response);
-				$("#actionContainer").html("");
-			})
-			.fail(function (xmlHttpRequest , textStatus, erroethrow) {
-				alert("Fail");
+				})
+				.done(function(response) {
+					$("#tableContiner").html(response);
+					$("#actionContainer").html("");
+				})
+				.fail(function(xmlHttpRequest, textStatus, erroethrow) {
+					alert("Fail");
+				});
+		} else {
+			swal({
+				title: "Warning",
+				text: "Please Enter All Valid Data In Fields.",
+				icon: "warning",
+				button: true,
+				dangerMode: true
 			});
+		}
 	});
 	$("#cancelBtn").click(function () {
 		$("#actionContainer").html("");

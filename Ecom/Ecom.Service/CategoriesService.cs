@@ -31,8 +31,7 @@ namespace Ecom.Service
 
         public void SaveCategory(Category category)
         {
-
-
+            
             using (var context = new EContext())
             {
                 context.Categories.Add(category);
@@ -53,11 +52,8 @@ namespace Ecom.Service
             {
                 if (!string.IsNullOrEmpty(search))
                 {
-                    return context.Categories.Where(
-                        category =>category.Name != null 
-                        && category.Name.ToLower().
-                        Contains(search.ToLower())).
-                        Count();
+                    return context.Categories.Count(category => category.Name != null &&
+                                                                category.Name.ToLower().Contains(search.ToLower()));
                     //return context.Categories.Where(category => category.Name != null &&
                     //category.Name.ToLower().Contains(search.ToLower())).Count();
                 }
@@ -108,7 +104,9 @@ namespace Ecom.Service
         {
             using (var context = new EContext())
             {
-                var category = context.Categories.Find(id);
+                var category = context.Categories.Where(x => x.Id == id).Include(x => x.Products).FirstOrDefault();
+
+                context.Products.RemoveRange(category.Products);//first delete product of this category
                 context.Categories.Remove(category);
                 context.SaveChanges();
             }

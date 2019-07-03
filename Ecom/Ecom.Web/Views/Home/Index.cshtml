@@ -1,10 +1,9 @@
 ﻿@model Ecom.Web.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
-
+    
 
 }
-<!-- SLIDER -->
 <!-- SLIDER -->
 <div class="rev_slider_wrapper fullwidthbanner-container">
     <div id="rev-slider1" class="rev_slider fullwidthabanner">
@@ -185,13 +184,12 @@
 
 <!-- END SLIDER -->
 <!-- IMAGE BOX -->
-@if (Model.FeaturedCategories != null & Model.FeaturedCategories.Count >= 4)
+@if (Model.FeaturedCategories != null)
 {
     var firstCategory = Model.FeaturedCategories[0];
     var secondCategory = Model.FeaturedCategories[1];
     var thirdCategory = Model.FeaturedCategories[2];
-    var fourthCategory = Model.FeaturedCategories[3];
-
+    var fourthCategory = Model.FeaturedCategories[3]; 
     <!-- IMAGE BOX -->
     <section class="flat-row row-image-box">
         <div class="container">
@@ -214,7 +212,7 @@
                         </div>
                     </div>
                 </div><!-- /.col-md-4 -->
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-4"> 
                     <div class="flat-image-box style-1 row2 data-effect clearfix">
                         <div class="item data-effect-item">
                             <div class="inner">
@@ -289,7 +287,7 @@
 </section>
 <!-- END PRODUCT NEW -->
 <!-- ANIMATION BOX -->
-<section class="flat-row row-animation-box bg-section row-1">
+@*<section class="flat-row row-animation-box bg-section row-1">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -306,7 +304,7 @@
             </div>
         </div><!-- /.row -->
     </div><!-- /.container -->
-</section>
+</section>*@
 <!-- END ANIMATION BOX -->
 <!-- PRODUCT -->
 <section class="flat-row row-product-project style-1">
@@ -318,14 +316,13 @@
                 </div>
                 @{Html.RenderAction("Products", "Widgets", new { isLatestProducts = false });}
 
-                </div>
             </div>
         </div>
-    
+    </div>
 </section>
 <!-- END PRODUCT -->
 <!-- ICON BOX -->
-@*<section class="flat-row row-icon-box bg-section bg-color-f5f">
+<section class="flat-row row-icon-box bg-section bg-color-f5f">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -382,7 +379,7 @@
             </div><!-- /.col-md-3 -->
         </div>
     </div>
-</section>*@
+</section>
 <!-- END ICON BOX -->
 <!-- NEW LATEST -->
 

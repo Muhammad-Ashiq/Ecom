@@ -1,20 +1,26 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+ <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>Modaz HTML Template</title>
-
-    <meta name="author" content="themesflat.com">
-
+    <title>@ViewBag.Title - Cloth Shop</title>
+    
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Bootstrap  -->
     <link rel="stylesheet" type="text/css" href="~/Content/stylesheets/bootstrap.css">
-    <
-    <script src="~/Content/javascript/jquery.min.js"></script>
+    
+    
+     <script src="~/Content/javascript/jquery.min.js"></script>
+    
+    <script src="~/Content/javascript/jquery-ui.js"></script>
+    
+    <script src="~/Content/javascript/main.js"></script>
+    
+    <!--- stylesheet for sweetalert-->
+    <link  rel="stylesheet" type="text/css" href="~/Content/stylesheets/sweetalert.css"/>
     
     <!-- Theme Style -->
     <link rel="stylesheet" type="text/css" href="~/Content/stylesheets/style.css">
@@ -25,7 +31,7 @@
 
     <!-- Animation Style -->
     <link rel="stylesheet" type="text/css" href="~/Content/stylesheets/animate.css">
-
+    
 
     <!-- Favicon and touch icons  -->
     <link href="favicon.ico" rel="shortcut icon">
@@ -34,27 +40,26 @@
         <script src="~/Content/javascript/html5shiv.js"></script>
         <script src="~/Content/javascript/respond.min.js"></script>
     <![endif]-->
-
     @*<meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")*@
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")*@
 
 </head>
 <body class="header_sticky header-style-1 has-menu-extra">
-<div id="loading-overlay">
-    <div class="loader"></div>
-</div>
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
     <div class="boxed">
         <div id="site-header-wrap">
             <!-- Header -->
             <header id="header" class="header clearfix">
                 <div class="container-fluid clearfix container-width-93" id="site-header-inner">
                     <div id="logo" class="logo float-left">
-                        <a href="index.html" title="logo">
-                            <img src="~/Content/images/logo.png" alt="image" width="107" height="24" data-retina="images/logo@2x.png" data-width="107" data-height="24">
+                        <a href="@Url.Action("Index","Home")" title="logo">
+                            <img src="~/Content/images/ClothShop.png" alt="image" width="107" height="24" data-retina="images/ClothShop.png@*logo@2x.png*@" data-width="107" data-height="24">
                         </a>
                     </div><!-- /.logo -->
                     <div class="mobile-button"><span></span></div>
@@ -66,11 +71,18 @@
                                 <button type="submit" class="header-search-submit" title="Search">Search</button>
                             </form>
                         </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
                         <li class="box-login">
-                            <a class="icon_login" href="#"></a>
+                            <a class="icon_login" href="@User.Identity.Name">
+                            
+                            </a>
                         </li>
+                    }
+                        
+
                         <li class="box-cart nav-top-cart-wrapper">
-                            <a class="icon_cart nav-cart-trigger active" href="#"><span>3</span></a>
+                            <a class="icon_cart nav-cart-trigger active" href="#"><span id="cartProductCount">0</span></a>
                             <div class="nav-shop-cart">
                                 <div class="widget_shopping_cart_content">
                                     <div class="woocommerce-min-cart-wrap">
@@ -88,64 +100,13 @@
                         <nav id="mainnav" class="mainnav">
                             <ul class="menu">
                                 <li>
-                                    <a href="index.html">HOME</a>
-                                    <ul class="submenu">
-                                        <li><a href="index.html">Homepage Style 1</a></li>
-                                        <li><a href="index-v2.html">Homepage Style 2</a></li>
-                                        <li><a href="index-v3.html">Homepage Style 3</a></li>
-                                        <li><a href="index-v4.html">Homepage Style 4</a></li>
-                                        <li><a href="index-v5.html">Homepage Style 5</a></li>
-                                        <li><a href="index-v6.html">Homepage Style 6</a></li>
-                                        <li><a href="index-v7.html">Homepage Style 7</a></li>
-                                        <li><a href="index-v8.html">Homepage Style 8</a></li>
-                                        <li><a href="index-v9.html">Homepage Style 9</a></li>
-                                        <li><a href="index-v10.html">Homepage Style 10</a></li>
-                                    </ul>
-                                </li>
-                                <li class="active">
-                                    <a href="shop-3col.html">SHOP</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="shop-3col.html">Shop Layouts</a>
-                                            <ul class="submenu">
-                                                <li class="active"><a href="shop-3col.html">Three Columns</a></li>
-                                                <li><a href="shop-4col.html">Four Columns</a></li>
-                                                <li><a href="shop-5col.html">Five Columns</a></li>
-                                                <li><a href="shop-3col-slide.html">Slidebar Three Columns</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="shop-detail-des.html">Shop Details</a>
-                                            <ul class="submenu">
-                                                <li><a href="shop-detail-des.html">Details Description</a></li>
-                                                <li><a href="shop-detail-exter.html">Details External</a></li>
-                                                <li><a href="shop-detail-option.html">Details Options</a></li>
-                                                <li><a href="shop-detail-fix.html">Details Fix</a></li>
-                                                <li><a href="shop-detail-zoom.html">Details Zoom</a></li>
-                                                <li><a href="shop-detail-group.html">Details Grouped</a></li>
-                                                <li><a href="shop-detail-video.html">Details Video</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <a href="@Url.Action("Index","Home")">HOME</a>
                                 </li>
                                 <li>
-                                    <a href="coming-soon.html">PAGE</a>
-                                    <ul class="submenu">
-                                        <li><a href="coming-soon.html">Coming Soon</a></li>
-                                        <li><a href="404.html"> Error 404</a></li>
-                                        <li><a href="faqs.html">FAQs</a></li>
-                                    </ul>
+                                    <a href="@Url.Action("Checkout","Shop")">CHECKOUT</a>
                                 </li>
                                 <li>
-                                    <a href="blog-list.html">BLOG</a>
-                                    <ul class="submenu">
-                                        <li><a href="blog-list.html">Blog List Full</a></li>
-                                        <li><a href="blog-list-1.html">Blog list Slide 1</a></li>
-                                        <li><a href="blog-list-2.html">Blog list Slide 2</a></li>
-                                        <li><a href="blog-grid.html">Blog Gird Full</a></li>
-                                        <li><a href="blog-grid-1.html">Blog Gird Slide</a></li>
-                                        <li><a href="blog-detail.html">Blog Details</a></li>
-                                    </ul><!-- /.submenu -->
+                                    <a href="@Url.Action("Index","Shop")">Shop</a>
                                 </li>
                                 <li>
                                     <a href="contact.html">CONTACT</a>
@@ -159,9 +120,9 @@
                     </div><!-- /.nav-wrap -->
                 </div><!-- /.container-fluid -->
             </header><!-- /header -->
-    </div><!-- /.site-header-wrap -->    
-    @RenderBody()
-    <section class="flat-row mail-chimp">
+        </div><!-- /.site-header-wrap -->
+        @RenderBody()
+        <section class="flat-row mail-chimp">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -182,7 +143,7 @@
                                 </div>
                             </form>
                             <ul class="flat-social">
-                               
+
                                 <li><a href="@ConfigService.Instance.GetConfig("FacebookUrl").Value"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google"></i></a></li>
@@ -258,9 +219,9 @@
         <a class="go-top">
             <i class="fa fa-chevron-up"></i>
         </a>
-     
-        
-    
+
+
+
     </div>
 
     <!-- Javascript -->
@@ -300,8 +261,9 @@
     <script src="~/Content/rev-slider/js/extensions/revolution.extension.parallax.min.js"></script>
     <script src="~/Content/rev-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
     <script src="~/Content/rev-slider/js/extensions/revolution.extension.video.min.js"></script>
-    <script src="~Content/javascript/SweetAlert-min.js"></script>
+    <script src="~/Content/javascript/sweetalert.js"></script>
+    <script src="~/Content/javascript/sweetalert.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    
 </body>
 </html>

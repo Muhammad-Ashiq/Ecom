@@ -7,6 +7,7 @@ namespace Ecom.Web.Controllers
 {
     public class CategoryController : Controller
     {
+        //[Authorize(Roles = "Admin")]
         //now we use singalton method to access this service
         //CategoriesService categoryService = new CategoriesService();
         [HttpGet]
@@ -34,14 +35,7 @@ namespace Ecom.Web.Controllers
                 model.Pager = new Pager(totalRecords, pageNo, 3);
 
                 return PartialView("_CategoryTable", model);
-                //    //model.SearchTerm = search;
-                //    //model.Categories = model.Categories.Where(p =>
-                //    //    p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
 
-                //model.Pager = new Pager(model.Categories.Count, pageNo);
-                ////model.Categories= model.Categories.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-
-                //return PartialView("_CategoryTable", model);
             }
             else
             {

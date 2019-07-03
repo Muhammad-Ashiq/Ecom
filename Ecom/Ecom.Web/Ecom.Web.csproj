@@ -195,6 +195,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Code\Enums.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -219,7 +220,12 @@
     <Compile Include="ViewModels\WidgetViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\sweetalert.css" />
+    <Content Include="Content\images\ClothShop.png" />
+    <Content Include="Content\javascript\jquery-ui.js" />
+    <Content Include="Content\javascript\main.js" />
+    <Content Include="Content\javascript\sweetalert.js" />
+    <Content Include="Content\javascript\sweetalert.min.js" />
+    <Content Include="Content\stylesheets\sweetalert.css" />
     <Content Include="Scripts\sweetalert.js" />
     <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="favicon.ico" />
@@ -290,15 +296,14 @@
     <Content Include="Views\Shop\Checkout.cshtml" />
     <Content Include="Views\Widgets\Products.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shop\FilterProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\fonts\" />
     <Folder Include="Content\icon\" />
-    <Folder Include="Content\images\" />
-    <Folder Include="Content\javascript\" />
     <Folder Include="Content\rev-slider\" />
-    <Folder Include="Content\stylesheets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,7 +1,7 @@
 ﻿@model Ecom.Web.ViewModels.ProductViewModels
 @if (Model != null && Model.Product != null)
 {
-    var defaultImageURL = "/Content/images/system/placeholder-image.png";
+    var defaultImageURL = "/Content/images/system/image.png";
 
     var imageURL = string.IsNullOrEmpty(Model.Product.ImagrUrl) ? defaultImageURL : Model.Product.ImagrUrl;
     <!-- Page title -->
