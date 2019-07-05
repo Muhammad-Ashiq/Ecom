@@ -95,21 +95,20 @@
 			var minPrice = ui.values[0];
 			var maxPrice = ui.values[1];
 			$("#amount").val("$" + minPrice + ".00" + " - " + "$" + maxPrice + ".00");
-			
-			
+
+
 			clearTimeout(callTimeout);
 			callTimeout = setTimeout(PriceRangeChange, 500);
 		}
 	});
 	$(".dataLink").click(function () {
 		var url = $(this).attr("data-href");
-		if (url != "" || url != undefined) {
+		if (url !== "" || url != undefined) {
 			GetData(url);
 		}
 	});
 	function GetData(dUrl){
 		showLoader();
-		
 	    $.ajax({
 			url: dUrl,
 			data: {
@@ -133,7 +132,7 @@
 			data: {
 				searchTerm: $("#SearchTerm").val(),
 				sortBy: $("#SortBy").val(),
-				categoryId: $("#CategoryID").val(),
+				categoryID: $("#CategoryId").val(),
 				minimumPrice : priceSlider.slider("values", 0),
 				maximumPrice : priceSlider.slider("values", 1)
 			}

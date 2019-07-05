@@ -847,6 +847,7 @@
 		flatIsotope();
 		flatCarouselOwl();
 		flatContentBox();
+	    updateCartProducts(); 
 	});
 })(jQuery);
 

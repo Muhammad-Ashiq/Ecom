@@ -102,6 +102,14 @@
     <Compile Include="Migrations\201906251834031_AddingCategoryid.Designer.cs">
       <DependentUpon>201906251834031_AddingCategoryid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907041956094_AddedOrderAndOrderItems.cs" />
+    <Compile Include="Migrations\201907041956094_AddedOrderAndOrderItems.Designer.cs">
+      <DependentUpon>201907041956094_AddedOrderAndOrderItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907042128353_AddedQuantityInOrderItems.cs" />
+    <Compile Include="Migrations\201907042128353_AddedQuantityInOrderItems.Designer.cs">
+      <DependentUpon>201907042128353_AddedQuantityInOrderItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -154,6 +162,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906251834031_AddingCategoryid.resx">
       <DependentUpon>201906251834031_AddingCategoryid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907041956094_AddedOrderAndOrderItems.resx">
+      <DependentUpon>201907041956094_AddedOrderAndOrderItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907042128353_AddedQuantityInOrderItems.resx">
+      <DependentUpon>201907042128353_AddedQuantityInOrderItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

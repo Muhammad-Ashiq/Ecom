@@ -72,7 +72,7 @@ namespace Ecom.Service
         {
             using (var context = new EContext())
             {
-                
+
                 context.Entry(product).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
@@ -162,6 +162,8 @@ namespace Ecom.Service
 
             }
         }
+
+
 
         public List<Product> GetProductsByCategory(int categoryId, int pageSize)
         {

@@ -1,4 +1,5 @@
 ﻿using Ecom.Models;
+using Ecom.Web.Models;
 using System.Collections.Generic;
 
 namespace Ecom.Web.ViewModels
@@ -8,6 +9,7 @@ namespace Ecom.Web.ViewModels
     {
         public List<Product> CartProducts { get; set; }
         public List<int> CartProductIds { get; set; }
+        public ApplicationUser User { get; set; }
     }
 
     public class ShopViewModel

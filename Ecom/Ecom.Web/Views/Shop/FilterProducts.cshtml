@@ -76,12 +76,12 @@
 
 	var products;
 	$(".productAddToCart").click(function () {
-		   
+
 		var existingCookieData = $.cookie('CartProducts');
-		if (existingCookieData != undefined && existingCookieData != "" && existingCookieData != null) 
+		if (existingCookieData != undefined && existingCookieData != "" && existingCookieData != null)
 		{
 			products = existingCookieData.split('-');
-			
+
 		} else {
 			products = [];
 		}
@@ -89,9 +89,9 @@
 
 		products.push(productId);
 
-		$.cookie('CartProducts', products.join('-'));
+		$.cookie('CartProducts', products.join('-'),{path: '/'});
 		updateCartProducts();
-		
+
 		swal("Done", "Product is Added to Cart !",
 			 "success"
 		);
