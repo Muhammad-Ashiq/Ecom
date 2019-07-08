@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Ecom.Service;
+﻿using Ecom.Service;
 using Ecom.Web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 
