@@ -12,7 +12,8 @@
     <!-- Bootstrap  -->
     <link rel="stylesheet" type="text/css" href="~/Content/stylesheets/bootstrap.css">
     
-    
+     
+
      <script src="~/Content/javascript/jquery.min.js"></script>
     
     <script src="~/Content/javascript/jquery-ui.js"></script>
@@ -34,7 +35,7 @@
     
 
     <!-- Favicon and touch icons  -->
-    <link href="favicon.ico" rel="shortcut icon">
+    <link href="stor.ico" rel="shortcut icon">
 
     <!--[if lt IE 9]>
         <script src="~/Content/javascript/html5shiv.js"></script>
@@ -71,14 +72,14 @@
                                 <button type="submit" class="header-search-submit" title="Search">Search</button>
                             </form>
                         </li>
-                    @if (User.Identity.IsAuthenticated)
+                    @*@if (User.Identity.IsAuthenticated)
                     {
                         <li class="box-login">
                             <a class="icon_login" href="@User.Identity.Name">
                             
                             </a>
                         </li>
-                    }
+                    }*@
                         
 
                         <li class="box-cart nav-top-cart-wrapper">
@@ -97,14 +98,20 @@
                                 <li>
                                     <a href="@Url.Action("Index","Shop")">Shop</a>
                                 </li>
-                                <li>
-                                    <a href="contact.html">CONTACT</a>
-                                    <ul class="submenu right-submenu">
-                                        <li><a href="contact.html">Contact Style 1</a></li>
-                                        <li><a href="contact-v2.html">Contact Style 2</a></li>
-                                    </ul>
-                                </li>
+                                <li>@Html.Partial("_LoginPartial")</li>
+                                @if (User.IsInRole("CanManage"))
+                                {
+                                    <li>
+                                        <a href="#">Admin Panel</a>
+                                        <ul class="submenu right-submenu">
+                                            <li><a href="@Url.Action("Index","Category")">Category</a></li>
+                                            <li><a href="@Url.Action("Index","Product")">Product</a></li>
+                                            <li><a href="@Url.Action("Index","Order")">Orders</a></li>
+                                        </ul>
+                                    </li>
+                                }
                             </ul>
+                        
                         </nav><!-- /.mainnav -->
                     </div><!-- /.nav-wrap -->
                 </div><!-- /.container-fluid -->
@@ -161,7 +168,7 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="widget widget-link link-login">
                             <ul>
-                                <li><a href="#">Login/ Register</a></li>
+                                <li><a >Login/ Register</a></li>
                                 <li><a href="#">Your Cart</a></li>
                                 <li><a href="#">Wishlist items</a></li>
                                 <li><a href="#">Your checkout</a></li>
@@ -181,7 +188,7 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="widget widget-brand">
                             <div class="logo logo-footer">
-                                <a href="index.html"><img src="~/Content/images/logo@2x.png" alt="image" width="107" height="24"></a>
+                                <a href="index.html"><img src="~/Content/images/ClothShop.png" alt="image" width="107" height="24"></a>
                             </div>
                             <ul class="flat-contact">
                                 <li class="address">@ConfigService.Instance.GetConfig("CompanyAddress").Value</li>

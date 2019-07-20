@@ -15,7 +15,7 @@
 							<li class="list-group-item d-flex justify-content-between lh-condensed" data-id="@orderItem.Id">
 								<div>
 									<h6 class="my-0">@i - @orderItem.Product.Name - Qty: @orderItem.Quantity</h6>
-									<small class="text-muted">@(orderItem.Product.Description)</small>
+								    <small class="text-muted">@(orderItem.Product.Description)</small>
 								</div>
 								<span class="text-muted">Unit Price: $ @orderItem.Product.Price - Total Price: @(orderItem.Quantity * orderItem.Product.Price)</span>
 							</li>
@@ -33,16 +33,21 @@
 						<div class="row">
 							<div class="col-md-12 mb-3">
 								<label for="firstName">Name</label>
-								<input type="text" class="form-control" id="Name" placeholder="" value="@Model.OrderBy.Name" required="">
+								<h6>@Model.OrderBy.Name</h6>
+								@*<input type="text" class="form-control" id="Name" placeholder="" value="@Model.OrderBy.Name" required="">*@
 							</div>
 						</div>
-						<div class="mb-3">
-							<label for="email">Email <span class="text-muted">(Optional)</span></label>
-							<input type="email" class="form-control" id="Email" placeholder="you@example.com" value="@Model.OrderBy.Email">
-						</div>
+					    <div class="mb-3">
+					        <label for="email">Email <span class="text-muted"></span></label>
+					        <h6>@Model.OrderBy.Email</h6>
+					    </div>
+					    <div class="mb-3">
+					        <label for="email">Phone Number <span class="text-muted"></span></label>
+					        <h6>@Model.OrderBy.PhoneNumber</h6>
+					    </div>
 						<div class="mb-3">
 							<label for="address">Address</label>
-							<input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="@Model.OrderBy.Address">
+							<h6>@Model.OrderBy.Address</h6>
 						</div>
 						<div class="mb-3">
 							<label for="address">Status</label>

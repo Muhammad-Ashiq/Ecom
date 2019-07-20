@@ -1,7 +1,8 @@
 ﻿@using Ecom.Web.Code
 @using Ecom.Web.ViewModels
 
-@model ShopViewModel
+
+@model Ecom.Web.ViewModels.ShopViewModel
 @{
 	ViewBag.Title = "Index";
 
@@ -101,12 +102,7 @@
 			callTimeout = setTimeout(PriceRangeChange, 500);
 		}
 	});
-	$(".dataLink").click(function () {
-		var url = $(this).attr("data-href");
-		if (url !== "" || url != undefined) {
-			GetData(url);
-		}
-	});
+	
 	function GetData(dUrl){
 		showLoader();
 	    $.ajax({
@@ -144,4 +140,10 @@
 			alert("FAIL");
 		});
 	}
+	$(".dataLink").click(function () {
+	    var url = $(this).attr("data-href");
+	    if (url !== "" || url != undefined) {
+	        GetData(url);
+	    }
+	});
 </script>

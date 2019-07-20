@@ -94,5 +94,18 @@ namespace Ecom.Service
                 return context.SaveChanges() > 0;
             }
         }
+
+        public void DeleteOrder(int id)
+        {
+            using (var context = new EContext())
+            {
+                var order = context.Orders.Find(id);
+                context.Orders.Remove(order);
+                context.SaveChanges();
+            }
+
+
+
+        }
     }
 }

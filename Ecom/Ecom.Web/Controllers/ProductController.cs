@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace Ecom.Web.Controllers
 {
+    [Authorize(Roles = "CanManage")]
     public class ProductController : Controller
     {
         //CategoriesService categoriesService = new CategoriesService();

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace Ecom.Web.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         //CategoriesService categoryService = new CategoriesService();
@@ -14,7 +15,7 @@ namespace Ecom.Web.Controllers
             model.FeaturedCategories = CategoriesService.Instance.GetFeaturedCategories();
             return View(model);
         }
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

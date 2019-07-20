@@ -6,6 +6,7 @@ namespace Ecom.Web.ViewModels
 {
     public class OrdersViewModel
     {
+        public Order Order { get; set; }
         public List<Order> Orders { get; set; }
         public string UserId { get; set; }
         public Pager Pager { get; set; }

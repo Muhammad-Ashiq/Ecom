@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Ecom/Ecom.Web/Content/images
+*.cs

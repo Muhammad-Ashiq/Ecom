@@ -72,6 +72,10 @@ namespace Ecom.Web.Models
         [Display(Name = "Address")]
         public string Address { get; set; }
 
+        [Required(ErrorMessage = "You must provide a phone number")]
+        [Display(Name = "Phone")]
+        [RegularExpression(@"((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$", ErrorMessage = "Not a valid phone number")]
+        public string PhoneNumber { get; set; }
 
         [Required]
         [EmailAddress]

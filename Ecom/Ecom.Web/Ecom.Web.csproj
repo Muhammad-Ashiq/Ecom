@@ -80,12 +80,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -195,6 +207,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\Enums.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -212,6 +225,18 @@
     <Compile Include="Migrations\201907040656069_NameOnRegistration.Designer.cs">
       <DependentUpon>201907040656069_NameOnRegistration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907111808337_addphonenu.cs" />
+    <Compile Include="Migrations\201907111808337_addphonenu.Designer.cs">
+      <DependentUpon>201907111808337_addphonenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907111815482_addphonenu1.cs" />
+    <Compile Include="Migrations\201907111815482_addphonenu1.Designer.cs">
+      <DependentUpon>201907111815482_addphonenu1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907111854524_addphonenu2.cs" />
+    <Compile Include="Migrations\201907111854524_addphonenu2.Designer.cs">
+      <DependentUpon>201907111854524_addphonenu2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -228,10 +253,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\ClothShop.png" />
+    <Content Include="Content\images\slider\artem-beliaikin-pJPGCvLblGk-unsplash.jpg" />
+    <Content Include="Content\images\slider\parker-burchfield-tvG4WvjgsEY-unsplash.jpg" />
+    <Content Include="Content\images\slider\slider-bg-1.jpg" />
+    <Content Include="Content\images\slider\slider-bg-2.jpg" />
+    <Content Include="Content\images\slider\slider-bg-3.jpg" />
+    <Content Include="Content\images\slider\slider-bg-4.jpg" />
+    <Content Include="Content\images\slider\slider-bg-5.jpg" />
+    <Content Include="Content\images\slider\slider-bg-7.jpg" />
+    <Content Include="Content\images\slider\slider-bg-8.jpg" />
     <Content Include="Content\javascript\jquery-ui.js" />
     <Content Include="Content\javascript\main.js" />
     <Content Include="Content\javascript\sweetalert.js" />
     <Content Include="Content\javascript\sweetalert.min.js" />
+    <Content Include="Content\stylesheets\dashboard.css" />
     <Content Include="Content\stylesheets\sweetalert.css" />
     <Content Include="Scripts\sweetalert.js" />
     <Content Include="Scripts\sweetalert.min.js" />
@@ -257,7 +292,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -314,13 +351,14 @@
     <Folder Include="Content\fonts\" />
     <Folder Include="Content\icon\" />
     <Folder Include="Content\rev-slider\" />
-    <Folder Include="Views\Dashboard\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
@@ -341,6 +379,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201907040656069_NameOnRegistration.resx">
       <DependentUpon>201907040656069_NameOnRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907111808337_addphonenu.resx">
+      <DependentUpon>201907111808337_addphonenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907111815482_addphonenu1.resx">
+      <DependentUpon>201907111815482_addphonenu1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907111854524_addphonenu2.resx">
+      <DependentUpon>201907111854524_addphonenu2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

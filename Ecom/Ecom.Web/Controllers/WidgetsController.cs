@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace Ecom.Web.Controllers
 {
+    [AllowAnonymous]
     public class WidgetsController : Controller
     {
         // GET: Widgets

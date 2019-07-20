@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Ecom.Web.Controllers
 {
+    [Authorize(Roles = "CanManage")]
     public class OrderController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -82,6 +83,13 @@ namespace Ecom.Web.Controllers
             result.Data = new { Success = OrdersService.Instance.UpdateOrderStatus(Id, status) };
 
             return result;
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            OrdersService.Instance.DeleteOrder(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

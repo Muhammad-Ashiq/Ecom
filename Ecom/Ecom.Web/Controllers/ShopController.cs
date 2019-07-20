@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Ecom.Web.Controllers
 {
-
+    
     public class ShopController : Controller
     {
         //ProductService productService = new ProductService();
@@ -45,7 +45,7 @@ namespace Ecom.Web.Controllers
         }
 
 
-
+        [AllowAnonymous]
         public ActionResult Index(string searchTerm, int? minimumPrice, int? categoryId, int? maximumPrice, int? sortBy, int? pageNo)
         {
             var pageSize = ConfigService.Instance.ShopPageSize();
@@ -67,6 +67,7 @@ namespace Ecom.Web.Controllers
 
             return View(model);
         }
+        [AllowAnonymous]
         public ActionResult FilterProducts(string searchTerm, int? pageNo, int? minimumPrice, int? categoryId, int? maximumPrice, int? sortBy)
         {
             var pageSize = ConfigService.Instance.ShopPageSize();
@@ -104,6 +105,7 @@ namespace Ecom.Web.Controllers
         }
 
         //productIDs should beformatted like = "7-7-9-1"
+        [AllowAnonymous]
         public JsonResult PlaceOrder(string productIds)
         {
 

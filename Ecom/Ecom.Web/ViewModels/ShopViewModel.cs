@@ -29,6 +29,7 @@ namespace Ecom.Web.ViewModels
 
     public class FilterProductsViewModel
     {
+
         public string SearchTearm { get; set; }
         public int? SortBy { get; set; }
         public List<Product> Products { get; set; }

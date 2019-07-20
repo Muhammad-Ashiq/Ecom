@@ -67,9 +67,12 @@
                                     <td>@order.UserId</td>
                                     <td>
                                         @order.TotalAmmount
-
                                     </td>
+                                    
                                     <td>@order.Status</td>
+                                    <td class="wrap-td">
+                                        <button class="deleteBtn" data-id="@order.Id" href="@Url.Action("Delete", "Order")">Delete</button>
+                                    </td>
                                     <td class="wrap-td">
 
                                         <a class="detailBtn" data-id="@order.Id" href="@Url.Action("Details", "Order", new {  Id = order.Id })">Details</a>
@@ -117,6 +120,35 @@
     </div>
 </section>
 <script>
+    $(".deleteBtn").click(function () {
+        swal({
+                title: "Confirm?",
+                text: "Are you sure you want to delete this product !",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("Delete", "Order")',
+                            data: {
+                                ID: $(this).attr('data-id')
+                            }
+                        })
+                        .done(function (response) {
+                            $("#ordersTable").html(response);
+                            swal("Record Deleted Successed ", {
+                                icon: "success"
+                            });
+                        })
+                        .fail(function (xmlHttpRequest, textStatus, errorThrown) {
+                            alert("FAIL");
+                        });
+                }
+            });
+    });
     function focusAction(controlToFocus) {
         $('html, body').animate({
             scrollTop: $("#" + controlToFocus).offset().top - 100

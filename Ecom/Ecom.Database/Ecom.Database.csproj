@@ -110,6 +110,14 @@
     <Compile Include="Migrations\201907042128353_AddedQuantityInOrderItems.Designer.cs">
       <DependentUpon>201907042128353_AddedQuantityInOrderItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907111654226_SeedUsrers.cs" />
+    <Compile Include="Migrations\201907111654226_SeedUsrers.Designer.cs">
+      <DependentUpon>201907111654226_SeedUsrers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907111744191_addphonenum.cs" />
+    <Compile Include="Migrations\201907111744191_addphonenum.Designer.cs">
+      <DependentUpon>201907111744191_addphonenum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -168,6 +176,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907042128353_AddedQuantityInOrderItems.resx">
       <DependentUpon>201907042128353_AddedQuantityInOrderItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907111654226_SeedUsrers.resx">
+      <DependentUpon>201907111654226_SeedUsrers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907111744191_addphonenum.resx">
+      <DependentUpon>201907111744191_addphonenum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
