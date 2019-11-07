@@ -95,9 +95,7 @@
 		slide: function (event, ui) {
 			var minPrice = ui.values[0];
 			var maxPrice = ui.values[1];
-			$("#amount").val("$" + minPrice + ".00" + " - " + "$" + maxPrice + ".00");
-
-
+			$("#amount").val("Rs" + minPrice + ".00" + " - " + "Rs" + maxPrice + ".00");
 			clearTimeout(callTimeout);
 			callTimeout = setTimeout(PriceRangeChange, 500);
 		}
